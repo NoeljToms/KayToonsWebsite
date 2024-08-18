@@ -1,18 +1,34 @@
 import React, { useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import "./Signup.css"; // Assuming you have some styles here
+import "./Signup.css";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [alreadySignedUp, setAlreadySignedUp] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const validateEmail = (email) => {
+    // Simple email regex pattern for validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
 
   const signupUser = async () => {
     setAlreadySignedUp(false);
     setSuccess(false);
+    setError("");
 
-    if (!email) return;
+    if (!email) {
+      setError("Email is required.");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
 
     const userRef = collection(db, "signupUsers");
 
@@ -55,6 +71,7 @@ function SignUp() {
           Sign Up
         </button>
       </div>
+      {error && <p className="error-message">{error}</p>}
       {alreadySignedUp && (
         <p className="already-signed-up">Already signed up</p>
       )}
