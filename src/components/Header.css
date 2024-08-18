@@ -1,0 +1,29 @@
+.header {
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .header.visible {
+    top: 0; /* Slide into view when visible */
+  }
+  
+  .logo {
+    font-size: 35px;
+    font-weight: bold;
+    color: #FF8000;
+    text-align: center;
+    font-family: "Coiny";
+  }
+  
+  .img-logo {
+    height: auto;
+    max-height: 50px;
+    padding: 0 10px;
+  }
+  
