@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import "./Signup.css";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -10,7 +9,6 @@ function SignUp() {
   const [error, setError] = useState("");
 
   const validateEmail = (email) => {
-    // Simple email regex pattern for validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
@@ -31,7 +29,6 @@ function SignUp() {
     }
 
     const userRef = collection(db, "signupUsers");
-
     const querySnapshot = await getDocs(userRef);
     let isAlreadySignedUp = false;
 
@@ -50,32 +47,39 @@ function SignUp() {
   };
 
   return (
-    <div className="signup-section">
-      <h1 className="header-sign">Sign Up For Kaytoons for Free</h1>
-      <p className="description">
-        Kaytoons offers a unique and fun way for kids to reduce screen time
+    <div className="signup-section px-4 bg-[#FFF7EF]">
+      <h1 className="text-2xl sm:text-4xl font-bold text-orange-500 text-center font-coiny mb-8 sm:mb-14">
+        Sign Up For KayToons for Free
+      </h1>
+      <p className="text-base sm:text-lg font-medium text-gray-800 sm:px-[30rem] mb-8 sm:mb-12 text-center">
+        KayToons offers a unique and fun way for kids to reduce screen time
         while engaging with friendly and educational audiobooks. Our content is
         designed to entertain and educate, providing a screen-free alternative
         that children and parents will love. Sign Up with your email to get
         notified when we launch!
       </p>
-      <div className="combine-div">
+      <div className="flex flex-col sm:flex-row justify-center items-center pt-10 sm:pt-0">
         <input
           type="email"
           placeholder="Enter your email"
-          className="email-input"
+          className="w-full mt-2 min-w-[250px] sm:min-w-[300px] max-w-[400px] px-4 py-2 mb-2 sm:mb-0 text-base shadow-lg rounded-lg border-0 font-coiny"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="btn-sign" onClick={signupUser}>
+        <button
+          className="bg-orange-500 text-white px-6 py-2 text-lg cursor-pointer transition-all duration-300 ease-in-out transform hover:bg-orange-400 hover:scale-110 active:scale-110 rounded-lg sm:ml-8 h-[47px] font-coiny"
+          onClick={signupUser}
+        >
           Sign Up
         </button>
       </div>
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className="text-red-500 text-lg mt-2">{error}</p>}
       {alreadySignedUp && (
-        <p className="already-signed-up">Already signed up</p>
+        <p className="text-red-500 text-lg mt-2">Already signed up</p>
       )}
-      {success && <p className="success-message">Successfully signed up!</p>}
+      {success && (
+        <p className="text-green-500 text-lg mt-2">Successfully signed up!</p>
+      )}
     </div>
   );
 }

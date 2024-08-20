@@ -1,11 +1,12 @@
 import React from "react";
-import "./Header.css";
-import logo from "./KayKoo1x.png";
+import logo from "../assets/KayKoo1x.png";
 
 const Header = () => {
   return (
-    <header className="header">
-      <h1 className="logo">Kaytoons</h1>
+    <header className="fixed top-0 left-0 w-full flex items-center justify-center bg-white text-center shadow-md py-4">
+      <h1 className="text-2xl sm:text-[35px] font-bold text-[#FF8000] font-[Coiny]">
+        KayToons
+      </h1>
     </header>
   );
 };

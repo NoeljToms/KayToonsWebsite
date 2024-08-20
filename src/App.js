@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React from "react";
+import "./tailwind.css";
 import Header from "./components/Header";
-import MainPage from "./components/MainPage";
 import SignUp from "./components/Signup";
 
 function App() {
   return (
-    <div className="App">
+    <div className="text-center bg-[#FFF7EF] min-h-screen">
       <Header />
-      {/* <div className="main-content">
-        <MainPage />
-      </div> */}
-      <div className="SignUp-content" id="signup">
+      <div className="pt-[15vh] sm:pt-[15vh]" id="signup">
         <SignUp />
       </div>
     </div>
